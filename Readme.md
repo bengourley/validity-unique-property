@@ -1,6 +1,7 @@
 # validity-unique-property
 
-Validity style validator to ensure a property is unique within entities available in a given service
+Validity style validator to ensure a property is unique within entities available in
+a given collection, for instance: all users must have a unique email address.
 
 ## Installation
 
@@ -8,22 +9,22 @@ Validity style validator to ensure a property is unique within entities availabl
 
 ## Usage
 
-Below is a simple example for usage with schemata:
+Below is a simple example for usage with schemata and save:
 
 ```js
 
 var validity = require('validity')
   , schemata = require('schemata')
+  , save = require('save')
+  , collection = save('user')
   , createUniqueValidator = require('validity-unique-property')
-  , save = ?
 
 var schema = schemata(
-    { age:
-      { type: Number
-      , validators: { all: [ createUniqueValidator(save) ] }
+    { emailAddress:
+      { type: String
+      , validators: { all: [ validity.email, createUniqueValidator(collection.findOne) ] }
       }
     })
-
 ```
 
 ## API
