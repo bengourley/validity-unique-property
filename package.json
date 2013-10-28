@@ -1,0 +1,34 @@
+{
+  "name": "validity-unique-property",
+  "version": "0.0.1",
+  "description": "Validity style validator to ensure a property is unique within entities available in a given collection",
+  "main": "validator.js",
+  "directories": {
+    "test": "test"
+  },
+  "publishConfig": {
+    "registry":"http://registry.npmjs.org"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bengourley/validity-unique-property"
+  },
+  "keywords": [
+    "validity",
+    "validation",
+    "number",
+    "range"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bengourley/unique-property/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.13.0",
+    "istanbul": "~0.1.44"
+  }
+}
