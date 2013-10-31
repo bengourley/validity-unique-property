@@ -1,11 +1,13 @@
 # validity-unique-property
 
+[![Build Status](https://travis-ci.org/bengourley/validity-unique-property.png?branch=master)](https://travis-ci.org/bengourley/validity-unique-property)
+
 Validity style validator to ensure a property is unique within entities available in
 a given collection, for instance: all users must have a unique email address.
 
 ## Installation
 
-      npm install validity-unique-property
+    npm install validity-unique-property
 
 ## Usage
 
