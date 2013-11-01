@@ -6,10 +6,19 @@ function createValidator(findOne, options) {
 
   var idProperty = options.idProperty || '_id'
 
-  function validate(key, keyDisplayName, object, callback) {
+  function validate(keys, keyDisplayName, object, callback) {
 
     var queryObject = {}
-    queryObject[key] = object[key]
+      , values = []
+
+    // Force fields to be an array if only a single value
+  ; [].concat(keys).forEach(function (field) {
+      queryObject[field] = object[field]
+      values.push(object[field])
+    })
+
+    values = values.join(',')
+
     findOne(queryObject, function (err, foundObject) {
 
       // No object was found, so the property is unique
@@ -20,7 +29,7 @@ function createValidator(findOne, options) {
       if (!object[idProperty]) {
 
         // This is a new object that doesn't yet have an id
-        return callback(null, '"' + object[key] + '" is already in use')
+        return callback(null, '"' + values + '" already in use')
 
       } else {
 
@@ -36,7 +45,7 @@ function createValidator(findOne, options) {
 
           // Otherwise the ids differ, so it's a different
           // object that already has this property
-          return callback(null, '"' + object[key] + '" is already in use')
+          return callback(null, '"' + values + '" already in use')
 
         }
 
