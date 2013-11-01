@@ -9,10 +9,10 @@ function createValidator(findOne, options) {
   function validate(keys, keyDisplayName, object, callback) {
 
     var queryObject = {}
-      , values = [];
+      , values = []
 
     // Force fields to be an array if only a single value
-    [].concat(keys).forEach(function (field) {
+  ; [].concat(keys).forEach(function (field) {
       queryObject[field] = object[field]
       values.push(object[field])
     })
