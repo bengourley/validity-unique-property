@@ -25,7 +25,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/bengourley/unique-property/issues"
+    "url": "https://github.com/bengourley/validity-unique-property/issues"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
