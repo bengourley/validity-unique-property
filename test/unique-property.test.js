@@ -62,9 +62,10 @@ describe('Unique property validator', function () {
 
   it('should not provide an error message if findOne() does not have a result for multi-properties', function (done) {
     var validate = createValidator(function (query, cb) {
+      assert.deepEqual(query, { username: 'jim', email: 'test@test.com' })
       return cb(null)
-    })
-    validate(['username', 'email'], 'user name', { username: 'jim', email: 'test@test.com' }, function (err, errMessage) {
+    }, { keys: [ 'email' ] })
+    validate('username', 'user name', { username: 'jim', email: 'test@test.com' }, function (err, errMessage) {
       if (err) return done(err)
       assert.equal(undefined, errMessage)
       done()
@@ -75,8 +76,8 @@ describe('Unique property validator', function () {
     var validate = createValidator(function (query, cb) {
       assert.deepEqual(query, { username: 'jim', _ident: 'aaaa' })
       return cb(null, { _ident: 'aaaa', username: 'jim' })
-    }, { idProperty: '_ident' })
-    validate(['username', '_ident'] , 'user name', { _ident: 'aaaa', username: 'jim' }, function (err, errMessage) {
+    }, { idProperty: '_ident', keys: [ '_ident' ] })
+    validate('username', 'user name', { _ident: 'aaaa', username: 'jim' }, function (err, errMessage) {
       if (err) return done(err)
       assert.equal(undefined, errMessage)
       done()

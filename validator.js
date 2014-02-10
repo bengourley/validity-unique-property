@@ -2,17 +2,18 @@ module.exports = createValidator
 
 function createValidator(findOne, options) {
 
-  if (!options) options = {}
+  if (!options) options = { keys: [] }
 
   var idProperty = options.idProperty || '_id'
 
-  function validate(keys, keyDisplayName, object, callback) {
+  function validate(key, keyDisplayName, object, callback) {
 
     var queryObject = {}
       , values = []
 
-    // Force fields to be an array if only a single value
-  ; [].concat(keys).forEach(function (field) {
+    // Concat schema key onto the options keys to construct the
+    // query and force fields to be an array if only a single value
+  ; [].concat(key).concat(options.keys).forEach(function (field) {
       queryObject[field] = object[field]
       values.push(object[field])
     })
