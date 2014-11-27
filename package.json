@@ -1,6 +1,6 @@
 {
   "name": "validity-unique-property",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Validity style validator to ensure a property is unique within entities available in a given collection",
   "main": "validator.js",
   "directories": {
