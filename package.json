@@ -10,7 +10,11 @@
     "registry": "http://registry.npmjs.org"
   },
   "scripts": {
-    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
+    "lint": "./node_modules/.bin/jshint . --reporter=./node_modules/jshint-full-path/index.js",
+    "pretest": "npm run-script lint",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec --recursive",
+    "posttest": "./node_modules/.bin/istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100 && rm -rf coverage",
+    "prepublish": "npm test && npm prune"
   },
   "repository": {
     "type": "git",
@@ -28,7 +32,9 @@
     "url": "https://github.com/bengourley/validity-unique-property/issues"
   },
   "devDependencies": {
-    "mocha": "~1.13.0",
-    "istanbul": "~0.1.44"
+    "istanbul": "~0.1.44",
+    "jshint": "^2.5.10",
+    "jshint-full-path": "^1.1.1",
+    "mocha": "~1.13.0"
   }
 }
