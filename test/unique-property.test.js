@@ -5,6 +5,16 @@ var createValidator = require('../')
 
 describe('Unique property validator', function () {
 
+  it('should callback with error message if findOne() returns an error', function (done) {
+    var msg = 'findOne error'
+      , validate = createValidator(function (query, cb) { return cb(new Error(msg)) })
+
+    validate('username', 'user name', { username: 'jim' }, function (err) {
+      assert.equal(err.message, msg)
+      done()
+    })
+  })
+
   it('should provide an error message if findOne() returns a result', function (done) {
     var validate = createValidator(function (query, cb) {
       return cb(null, { _id: 'aaaa', username: 'jim' })
