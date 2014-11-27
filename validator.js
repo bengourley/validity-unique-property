@@ -21,6 +21,7 @@ function createValidator(findOne, options) {
     values = values.join(',')
 
     findOne(queryObject, function (err, foundObject) {
+      if (err) return callback(err)
 
       // No object was found, so the property is unique
       if (!foundObject) return callback(null, undefined)
